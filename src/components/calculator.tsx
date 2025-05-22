@@ -19,7 +19,7 @@ function Add(props:AddProps) {
 }
 
 interface histo{
-  id : string,
+  id : number,
   value : number
 }
 
