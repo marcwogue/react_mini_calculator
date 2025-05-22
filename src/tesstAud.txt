@@ -1,0 +1,58 @@
+import React, { useRef, useState } from 'react';
+
+function AudioPlayer() {
+  // useRef pour garder la référence de l'élément Audio
+  const audioRef = useRef(null);
+
+  // State pour savoir si l'audio est en lecture ou pas
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [up , setup] = useState(false)
+  
+
+  // Fonction pour gérer la lecture / pause
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+  
+  const vol= () =>{
+    if (audioRef.current.volume===1 || audioRef.current.volume===0) {
+      setup((v)=> !v);
+      console.log(up);
+      
+    }
+
+    up? 
+    audioRef.current.volume -= 0.2 :
+    audioRef.current.volume += 0.2;
+    
+    console.log('render');
+    
+  }
+
+  return (
+    <div>
+      <h2>Lecteur Audio Simple</h2>
+
+      {/* L'élément audio caché */}
+      <audio ref={audioRef} src="song.mp3" preload="auto" />
+
+      {/* Bouton pour play/pause */}
+      <button onClick={togglePlay}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <button onClick={vol}>
+        volume add
+      </button>
+    </div>
+  );
+}
+
+export default AudioPlayer;
