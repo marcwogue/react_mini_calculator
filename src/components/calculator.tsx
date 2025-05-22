@@ -1,9 +1,15 @@
+import type { ReactNode, MouseEventHandler } from 'react';
+
 
 import {  useState } from 'react';
 
+interface AddProps {
+  onclick: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  children?: ReactNode;
+}
 
-
-function Add(props) {
+function Add(props:AddProps) {
 
   return(
     <button onClick={props.onclick} className={props.className}>
@@ -40,7 +46,7 @@ const calculator = () => {
   }
  
   const add = ()=>{
-    setval3(parseFloat(val1)+parseFloat(val2))
+    setval3(val1+val2)
     uphist();
   }
   const res = ()=>{
@@ -49,23 +55,23 @@ const calculator = () => {
     setval3(0)
   }
   const sous = ()=>{
-    setval3(parseFloat(val1)-parseFloat(val2))
+    setval3(val1-val2)
     uphist();
   }
   const mult = ()=>{
-    setval3(parseFloat(val1)*parseFloat(val2))
+    setval3(val1*val2)
     uphist();
   }
   const div = ()=>{
-    setval3(parseFloat(val1)/parseFloat(val2))
+    setval3(val1/val2)
     uphist();
   }
-const handler1 = (e) =>{
-  setval1(e.target.value)
+const handler1 = (e : React.ChangeEvent<HTMLInputElement>) =>{
+  setval1(Number(e.target.value))
 }
 
-const handler2 = (e) =>{
-  setval2(e.target.value)
+const handler2 = (e :React.ChangeEvent<HTMLInputElement>) =>{
+  setval2(Number(e.target.value))
 }
 console.log('render')
    
